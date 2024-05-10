@@ -63,8 +63,7 @@ class AbemaTVDownloader:
             with tqdm(total=len(files), desc='Downloading', ascii=True, unit='file') as pbar:
                 for tsf in files:
                     outputtemp = self.temporary_folder + os.path.basename(tsf)
-                    if outputtemp.find('?tver') != -1:
-                        outputtemp = outputtemp[:outputtemp.find('?tver')]
+                    outputtemp = outputtemp.split("?")[0]
                     with open(outputtemp, 'wb') as outf:
                         try:
                             vid = self.session.get(tsf)
